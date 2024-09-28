@@ -1,0 +1,112 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   CiteGeist
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Open Sans', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-grey-900 text-black-300 ">
+  <div class="flex h-screen">
+   <!-- Sidebar -->
+   <div class="w-1/5 shadow-lg bg-white-800 p-4 ">
+    <div class="flex items-center mb-6">
+        <svg width="40" height="40" viewBox="0 0 48 48">
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-linecap="round"
+            >
+              <path
+                d="M18 23.937V10a6 6 0 0 1 12 0v2.006m0 11.997V38a6 6 0 0 1-12 0v-2.03"
+              ></path>
+              <path
+                d="M24 30H9.984C6.68 30 4 27.314 4 24s2.68-6 5.984-6h2.005M24 18h13.989A6.006 6.006 0 0 1 44 24c0 3.314-2.691 6-6.011 6h-1.923"
+              ></path>
+            </g>
+          </svg>
+     <span class="ml-2 text-xl font-bold text-black">
+      CiteGeist
+     </span>
+    </div>
+    
+    <div>
+     <ul>
+      <li class="flex justify-between items-center mb-2">
+       <span>
+        Recommended
+       </span>
+      </li>
+      <li class="flex justify-between items-center mb-2">
+       <span>
+        Similar to you
+       </span>
+      </li>
+     </ul>
+    
+    </div>
+   </div>
+   <!-- Main Content -->
+   <div class="flex-1 flex flex-col">
+    <div class="flex justify-between items-center p-4 bg-white-800">
+        <div class="mb-4">
+            <input class="w-full p-2 rounded-full bg-black-700 text-white-300 placeholder-gray-500" placeholder="Search" type="text"/>
+           </div>
+    </div>
+    <div class="flex-1 p-4 overflow-y-auto">
+     <div class="mb-4">
+      
+     </div>
+     <div class="space-y-4">
+      {% for article in articles %}
+      <div class="bg-white-800 p-4 rounded-lg shadow-lg">
+          <div class="flex justify-between items-center mb-2">
+              <div class="flex items-center">
+                  <span class="ml-2 text-black font-bold">
+                      <a href="#">{{ article['title'] }}</a>  <!-- Assuming the DataFrame has a 'title' column -->
+                  </span>
+              </div>
+              <span class="text-gray-500">{{ article['date'] }}</span>  <!-- Replace with appropriate date column -->
+          </div>
+          <p class="font-semibold text-black">By {{ article['author'] }}</p>  <!-- Replace with appropriate author column -->
+          <p class="text-gray-400">{{ article['abstract'] }}</p>  <!-- Replace with appropriate abstract column -->
+          <div class="flex justify-between items-center mt-2">
+              <span class="text-gray-500">
+                  <i class="fas fa-users"></i>
+              </span>
+              <span class="bg-white-700 text-black-400 px-2 py-1 rounded-full">
+                  View
+              </span>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+
+    </div>
+   </div>
+   <!-- Right Sidebar -->
+   <div class="w-1/4 bg-white-800 p-4">
+    <div class="flex items-center mb-6">
+     <img alt="User Avatar" class="h-10 w-10 rounded-full" height="40" src="C:\Users\carly\OneDrive\Desktop\young intentional alpaca-html\New temps\user-profile-icon-free-vector.jpg" width="40"/>
+     <div class="ml-2">
+      <span class="text-black font-bold">
+       cl0ud00
+      </span>
+     </div>
+    </div>
+    
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

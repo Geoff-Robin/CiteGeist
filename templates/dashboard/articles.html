@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#2f3349] text-white min-h-screen flex flex-col">
+    <nav class="bg-[#363b54] p-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <svg class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#7dd3fc"/>
+                <path d="M2 17L12 22L22 17" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="text-xl font-bold">StudyBuddy</span>
+        </div>
+        <div class="flex-grow mx-4">
+            <input type="text" placeholder="Search Posts" class="w-full bg-[#2f3349] rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+        <div class="flex items-center">
+            <span class="text-sm font-medium">Jevid K. Doe</span>
+            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        </div>
+    </nav>
+
+    <main class="flex-grow bg-[#363b54] p-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                    </svg>
+                    <h2 class="text-xl font-semibold">Back to Dashboard</h2>
+                </div>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                </svg>
+            </div>
+
+            <article class="mb-12">
+                <h1 class="text-3xl font-bold text-[#7dd3fc] mb-2">The Fundamentals of Machine Learning</h1>
+                <p class="text-sm text-gray-400 mb-4">by Dr. Alan Turing, Ada Lovelace, Claude Shannon</p>
+                <div class="space-y-4">
+                    <p>
+                        Machine Learning (ML) is a subset of artificial intelligence that focuses on the development of algorithms and statistical models that enable computer systems to improve their performance on a specific task through experience. This article delves into the core concepts of ML, including supervised and unsupervised learning, neural networks, and deep learning.
+                    </p>
+                    <p>
+                        One of the key aspects of machine learning is its ability to identify patterns in data. This pattern recognition capability allows ML systems to make predictions or decisions without being explicitly programmed to perform the task. Instead, they rely on patterns and inference to make informed choices.
+                    </p>
+                    <p>
+                        The applications of machine learning are vast and diverse, ranging from image and speech recognition to autonomous vehicles and personalized recommendations. As the field continues to evolve, we can expect to see even more innovative applications that will shape the future of technology and society.
+                    </p>
+                    <p>
+                        In supervised learning, the algorithm is trained on a labeled dataset, where the desired output is known. This approach is commonly used in classification and regression tasks. Unsupervised learning, on the other hand, deals with unlabeled data and aims to discover hidden patterns or structures within the data.
+                    </p>
+                    <p>
+                        Neural networks, inspired by the human brain's structure, have become a cornerstone of modern machine learning. These networks consist of interconnected nodes (neurons) organized in layers, allowing them to learn complex representations of data. Deep learning, a subset of neural networks with multiple hidden layers, has achieved remarkable success in various domains, including computer vision and natural language processing.
+                    </p>
+                </div>
+            </article>
+
+            <section>
+                <h2 class="text-2xl font-bold mb-4">Articles similar to these</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="#" class="block p-6 bg-[#2f3349] rounded-lg hover:bg-[#3a3f5a] transition duration-300">
+                        <h3 class="text-lg font-semibold text-[#7dd3fc] mb-2">The Rise of Quantum Computing</h3>
+                        <p class="text-sm text-gray-400">by Richard Feynman, Niels Bohr, Erwin Schrödinger</p>
+                    </a>
+                    <a href="#" class="block p-6 bg-[#2f3349] rounded-lg hover:bg-[#3a3f5a] transition duration-300">
+                        <h3 class="text-lg font-semibold text-[#7dd3fc] mb-2">Blockchain: Beyond Cryptocurrency</h3>
+                        <p class="text-sm text-gray-400">by Satoshi Nakamoto, Vitalik Buterin, Nick Szabo</p>
+                    </a>
+                    <a href="#" class="block p-6 bg-[#2f3349] rounded-lg hover:bg-[#3a3f5a] transition duration-300">
+                        <h3 class="text-lg font-semibold text-[#7dd3fc] mb-2">The Ethics of Artificial Intelligence</h3>
+                        <p class="text-sm text-gray-400">by Isaac Asimov, Mary Shelley, Philip K. Dick</p>
+                    </a>
+                    <a href="#" class="block p-6 bg-[#2f3349] rounded-lg hover:bg-[#3a3f5a] transition duration-300">
+                        <h3 class="text-lg font-semibold text-[#7dd3fc] mb-2">The Future of Internet of Things (IoT)</h3>
+                        <p class="text-sm text-gray-400">by Kevin Ashton, Vinton Cerf, Tim Berners-Lee</p>
+                    </a>
+                    <a href="#" class="block p-6 bg-[#2f3349] rounded-lg hover:bg-[#3a3f5a] transition duration-300">
+                        <h3 class="text-lg font-semibold text-[#7dd3fc] mb-2">Cybersecurity in the Age of Big Data</h3>
+                        <p class="text-sm text-gray-400">by Bruce Schneier, Dorothy E. Denning, Whitfield Diffie</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

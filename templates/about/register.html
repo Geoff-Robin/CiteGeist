@@ -1,0 +1,105 @@
+{% extends "about/base.html" %}
+
+{% block content %}
+<div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg text-center max-w-md w-full backdrop-filter backdrop-blur-sm mx-auto">
+    <h2 class="text-3xl font-semibold mb-6">Register</h2>
+    
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+            <input type="text" name="username" id="username" required class="border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-4">
+            <label for="password1" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            <input type="password" name="password1" id="password1" required class="border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-6">
+            <label for="password2" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+            <input type="password" name="password2" id="password2" required class="border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-4 relative">
+            <label for="interests" class="block text-gray-700 text-sm font-bold mb-2">Interests</label>
+            <div class="border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline relative">
+                <div id="dropdown" class="absolute bg-white border rounded shadow-md hidden max-h-48 overflow-y-auto w-full" style="bottom: 100%; z-index: 10;">
+                    <ul class="list-none p-2">
+                        <li>
+                            <label class="flex items-center space-x-2 text-left">
+                                <input type="checkbox" name="interests" value="Machine Learning" class="form-checkbox">
+                                <span>Machine Learning</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="flex items-center space-x-2 text-left">
+                                <input type="checkbox" name="interests" value="Artificial Intelligence" class="form-checkbox">
+                                <span>Artificial Intelligence</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="flex items-center space-x-2 text-left">
+                                <input type="checkbox" name="interests" value="Data Science" class="form-checkbox">
+                                <span>Data Science</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="flex items-center space-x-2 text-left">
+                                <input type="checkbox" name="interests" value="Web Development" class="form-checkbox">
+                                <span>Web Development</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="flex items-center space-x-2 text-left">
+                                <input type="checkbox" name="interests" value="Cybersecurity" class="form-checkbox">
+                                <span>Cybersecurity</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="flex items-center space-x-2 text-left">
+                                <input type="checkbox" name="interests" value="Blockchain" class="form-checkbox">
+                                <span>Blockchain</span>
+                            </label>
+                        </li>
+                        <!-- Add more options as needed -->
+                    </ul>
+                </div>
+                <div id="selected-interests" class="text-left cursor-pointer">Select your interests</div>
+            </div>
+        </div>
+
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Register</button>
+    </form>
+
+    <div class="mt-4 mb-4">
+        <p class="text-gray-600">Already have an account? <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Login here</a></p>
+    </div>
+
+    <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">Back to Home</a>
+</div>
+
+<script>
+    document.querySelector('#selected-interests').addEventListener('click', function() {
+        const dropdown = document.getElementById('dropdown');
+        dropdown.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('#dropdown input[type="checkbox"]').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            const selectedInterests = Array.from(document.querySelectorAll('#dropdown input[type="checkbox"]:checked'))
+                .map(cb => cb.nextElementSibling.textContent.trim());
+            document.getElementById('selected-interests').textContent = selectedInterests.join(', ') || 'Select your interests';
+        });
+    });
+
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('dropdown');
+        const targetElement = event.target;
+        if (!dropdown.contains(targetElement) && targetElement.id !== 'selected-interests') {
+            dropdown.classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %}

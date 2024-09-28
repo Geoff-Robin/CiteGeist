@@ -1,0 +1,36 @@
+{% extends "about/base.html" %}
+
+{% block title %}Login - CiteGeist{% endblock %}
+
+{% block content %}
+<div class="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg text-center max-w-md w-full backdrop-filter backdrop-blur-sm mx-auto">
+    <h2 class="text-3xl font-semibold mb-6">Login</h2>
+    
+    <!-- Display form errors if any -->
+    {% if form.errors %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <strong>Error:</strong> Invalid username or password. Please try again.
+        </div>
+    {% endif %}
+    
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+            <input type="text" name="username" id="username" required class="border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="mb-6">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+            <input type="password" name="password" id="password" required class="border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+        </div>
+
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Login</button>
+    </form>
+
+    <div class="mt-4 mb-5">
+        <p class="text-gray-600">Don't have an account? <a href="{% url 'register' %}" class="text-blue-500 hover:underline">Register here</a></p>
+    </div>
+    <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-5">Back to Home</a>
+</div>
+{% endblock %}
