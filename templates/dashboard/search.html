@@ -1,0 +1,128 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        CiteGeist - Search Results
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-grey-900 text-black-300">
+    <div class="flex flex-col h-screen">
+        <!-- Navigation Bar -->
+        <nav class="bg-white-800 shadow-md p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg width="40" height="40" viewBox="0 0 48 48">
+                        <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                            <path d="M18 23.937V10a6 6 0 0 1 12 0v2.006m0 11.997V38a6 6 0 0 1-12 0v-2.03"></path>
+                            <path d="M24 30H9.984C6.68 30 4 27.314 4 24s2.68-6 5.984-6h2.005M24 18h13.989A6.006 6.006 0 0 1 44 24c0 3.314-2.691 6-6.011 6h-1.923"></path>
+                        </g>
+                    </svg>
+                    <span class="ml-2 text-xl font-bold text-black">CiteGeist</span>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="flex-grow mx-4">
+                    <form action="{% url 'search' %}" method="get">
+                        <input class="p-2 px-4 py-2 rounded-full bg-black-700 text-white-300 placeholder-gray-500 w-full" placeholder="Search" type="text" name="q" value="{{ query }}" />
+                    </form>
+                </div>
+
+                <!-- User Avatar -->
+                <a class="flex items-center" href="{% url 'profile' %}">
+                    <img alt="User Avatar" class="h-10 w-10 rounded-full" src="{% static 'images/user-profile-icon-free-vector.jpg' %}" />
+                    <span class="ml-2 text-black font-bold">{{ request.user.username }}</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="flex flex-grow">
+            <!-- Sidebar -->
+            <div class="w-1/5 shadow-lg bg-white-800 p-4">
+                <div class="mb-6">
+                    <ul>
+                        <li class="hover:bg-black hover:text-white flex justify-between items-center mb-2 rounded-lg p-2">
+                            <span><a href='#'>Recommended</a></span>
+                        </li>
+                        <li class="flex justify-between items-center mb-2 hover:text-white hover:bg-black  rounded-lg p-2">
+                            <span><a href="#">Similar to you</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col p-4 overflow-y-auto">
+                <h2 class="text-2xl font-bold mb-4">Search Results for "{{ query }}"</h2>
+                <div class="space-y-4">
+                    {% for article in page_obj %}
+                    <div class="bg-white-800 p-4 rounded-lg shadow-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex items-center">
+                                <span class="ml-2 text-black font-bold">
+                                    <a href="{% url 'article_detail' article.paper_id %}">{{ article.title }}</a>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-2">{{ article.abstract|truncatewords:30 }}</p>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-gray-500">
+                                <i class="fas fa-users"></i> {{ article.authors|join:", " }}
+                            </span>
+                            <span class="bg-white-700 border border-black text-black-400 px-2 py-1 rounded-full"><a href="{% url 'article_detail' article.paper_id %}">View</a></span>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No results found.</p>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-6">
+                    {% if page_obj.has_other_pages %}
+                    <nav class="flex justify-center">
+                        <ul class="flex">
+                            {% if page_obj.has_previous %}
+                            <li class="mx-1">
+                                <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">Previous</a>
+                            </li>
+                            {% endif %}
+
+                            {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                            <li class="mx-1">
+                                <span class="px-3 py-2 bg-blue-500 text-white rounded-lg">{{ num }}</span>
+                            </li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="mx-1">
+                                <a href="?q={{ query }}&page={{ num }}" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">{{ num }}</a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li class="mx-1">
+                                <a href="?q={{ query }}&page={{ page_obj.next_page_number }}" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg">Next</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,346 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Registration-page - CiteGeist</title>
+    <meta
+      property="og:title"
+      content="Registration-page - CiteGeist"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <style>
+        .interests-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .interests-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .interests-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        .interest-tag {
+            background-color: #e0e0e0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .remove-tag {
+            margin-left: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>   
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-theme-neutral-dark);
+        background: var(--dl-color-theme-neutral-light);
+
+        fill: var(--dl-color-theme-neutral-dark);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/animate.css@4.1.1/animate.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+  </head>
+  <body>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <div>
+      <link href="{% static 'registration-page.css' %}" rel="stylesheet" />
+
+      <div class="registration-page-container">
+        <sign-up10-wrapper class="sign-up10-wrapper">
+          <!--SignUp10 component-->
+          <div class="sign-up10-container1">
+            <div class="sign-up10-container2"></div>
+            <div class="sign-up10-form-root thq-section-padding">
+              <div class="sign-up10-form1 thq-section-padding">
+                <div class="sign-up10-title-root">
+                  <svg height="48" width="48" viewBox="0 0 48 48">
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-width="4"
+                    >
+                      <path
+                        d="M18 23.937V10a6 6 0 0 1 12 0v2.006m0 11.997V38a6 6 0 0 1-12 0v-2.03"
+                      ></path>
+                      <path
+                        d="M24 30H9.984C6.68 30 4 27.314 4 24s2.68-6 5.984-6h2.005M24 18h13.989A6.006 6.006 0 0 1 44 24c0 3.314-2.691 6-6.011 6h-1.923"
+                      ></path>
+                    </g>
+                  </svg>
+                  <h2>
+                    <fragment class="registration-page-fragment1">
+                      <span class="registration-page-text1 thq-heading-2">
+                        Create an account
+                      </span>
+                    </fragment>
+                  </h2>
+                  <p class="sign-up10-text11 thq-body-large">
+                    Already have an account? <a href="{% url 'login' %}" >Sign in</a>
+                  </p>
+                </div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form class="sign-up10-form2" method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <div class="sign-up10-email">
+                      <label for="username" class="sign-up10-text12 thq-body-large">
+                        Username
+                      </label>
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
+                        placeholder="username"
+                        class="sign-up10-textinput1 thq-input thq-body-large"
+                      />
+                    </div>
+                    <div class="sign-up10-password">
+                      <div class="sign-up10-textfield">
+                        <div class="sign-up10-container3">
+                          <label for="thq-sign-up-10-password" class="sign-up10-text13 thq-body-large">
+                            Password
+                          </label>
+                        </div>
+                        <input
+                          type="password"
+                          id="thq-sign-up-10-password"
+                          name="thq-sign-up-10-password"
+                          required
+                          placeholder="Password"
+                          class="sign-up10-textinput2 thq-input thq-body-large"
+                        />
+                      </div>
+                    </div>
+                  <div class="mb-4 relative">
+                    <div class="sign-up10-form2">
+                        <!-- Other form fields... -->
+                
+                        <div class="interests-container">
+                            <label for="interests" class="sign-up10-text12">Interests</label>
+                            <br>
+                            <br>
+                            <input
+                              type="text"
+                              id="interests"
+                              placeholder="Type an interest and press Enter"
+                              class="sign-up10-textinput2 thq-input thq-body-large"
+                            />
+                            <div id="interestTags" class="interests-tags"></div>
+                            <input type="hidden" name="interests" id="interestsHidden">
+                        </div>
+                
+                        <!-- Rest of the form... -->
+                    </div>
+                </div>
+                <button type="submit" class="sign-up10-button1 thq-button-filled">
+                    <span>Create Account</span>
+                  </button>
+                </form>
+                <div class="sign-up10-container4">
+                  <div class="sign-up10-divider1">
+                    <div class="sign-up10-divider2"></div>
+                    <div class="sign-up10-divider3"></div>
+                  </div>
+                  <span>
+                    <fragment class="registration-page-fragment4">
+                      <span class="registration-page-text6">OR</span>
+                    </fragment>
+                  </span>
+                </div>
+                <a href ="{% url 'login' %}"type="button" class="sign-up10-button2 thq-button-filled">
+                  <span>
+                    <fragment class="registration-page-fragment3">
+                      <span class="registration-page-text5">Sign In</span>
+                    </fragment>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <svg height="48" width="48" viewBox="0 0 48 48">
+              <g
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="4"
+              >
+                <path
+                  d="M18 23.937V10a6 6 0 0 1 12 0v2.006m0 11.997V38a6 6 0 0 1-12 0v-2.03"
+                ></path>
+                <path
+                  d="M24 30H9.984C6.68 30 4 27.314 4 24s2.68-6 5.984-6h2.005M24 18h13.989A6.006 6.006 0 0 1 44 24c0 3.314-2.691 6-6.011 6h-1.923"
+                ></path>
+              </g>
+            </svg>
+          </div>
+        </sign-up10-wrapper>
+      </div>
+    </div>
+    <script
+      defer=""
+      src="https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js"
+    ></script>
+    <script
+      defer=""
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
+    ></script>
+    <script>
+        const passwordInput = document.getElementById('thq-sign-up-10-password');
+        const togglePasswordBtn = document.querySelector('.sign-up10-hide-password');
+        const togglePasswordText = togglePasswordBtn.querySelector('span');
+      
+        // Add an event listener for the hide/show functionality
+        togglePasswordBtn.addEventListener('click', function () {
+          // Check if the password is currently visible (type="text")
+          if (passwordInput.type === 'password') {
+            // Change input type to "text" to show the password
+            passwordInput.type = 'text';
+            // Update the button text to "Hide"
+            togglePasswordText.textContent = 'Hide';
+          } else {
+            // Change input type back to "password" to hide it
+            passwordInput.type = 'password';
+            // Update the button text to "Show"
+            togglePasswordText.textContent = 'Show';
+          }
+        });
+      </script>
+      
+    <script>
+        const interestsInput = document.getElementById('interests');
+const interestTags = document.getElementById('interestTags');
+const interestsHidden = document.getElementById('interestsHidden');
+let interests = [];
+
+interestsInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const interest = this.value.trim();
+        if (interest && !interests.includes(interest)) {
+            addInterest(interest);
+            this.value = '';
+        }
+    }
+});
+
+function addInterest(interest) {
+    interests.push(interest);
+    renderInterests();
+    updateHiddenField();
+}
+
+function removeInterest(interest) {
+    interests = interests.filter(i => i !== interest);
+    renderInterests();
+    updateHiddenField();
+}
+
+function renderInterests() {
+    interestTags.innerHTML = '';
+    interests.forEach(interest => {
+        const tag = document.createElement('span');
+        tag.classList.add('interest-tag');
+        tag.innerHTML = `${interest} <span class="remove-tag" onclick="removeInterest('${interest}')">&times;</span>`;
+        interestTags.appendChild(tag);
+    });
+}
+
+function updateHiddenField() {
+    interestsHidden.value = interests.join(',');
+}
+    </script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            fetch('{% url "register" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            }).then(response => response.text())
+              .then(html => {
+                  document.open();
+                  document.write(html);
+                  document.close();
+              });
+        });
+    </script>
+  </body>
+</html>

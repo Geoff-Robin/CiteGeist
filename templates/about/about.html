@@ -1,0 +1,386 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}CiteGeist{% endblock %}</title>
+    <meta property="og:title" content="Young Intentional Alpaca" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Inter;
+        font-size: 16px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.15;
+        color: var(--dl-color-theme-neutral-dark);
+        background: var(--dl-color-theme-neutral-light);
+
+        fill: var(--dl-color-theme-neutral-dark);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/animate.css@4.1.1/animate.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
+    />
+  </head>
+  <body>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <div>
+      <link href="{% static 'index.css' %}" rel="stylesheet" />
+
+      <div class="home-container1">
+        <header data-thq="thq-navbar" class="home-navbar-interactive">
+          <svg width="60" height="60" viewBox="0 0 48 48">
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-linecap="round"
+            >
+              <path
+                d="M18 23.937V10a6 6 0 0 1 12 0v2.006m0 11.997V38a6 6 0 0 1-12 0v-2.03"
+              ></path>
+              <path
+                d="M24 30H9.984C6.68 30 4 27.314 4 24s2.68-6 5.984-6h2.005M24 18h13.989A6.006 6.006 0 0 1 44 24c0 3.314-2.691 6-6.011 6h-1.923"
+              ></path>
+            </g>
+          </svg>
+          <span class="home-text10" id="CiteGeist">CiteGeist</span>
+          <div class="home-container2">
+            <div data-thq="thq-navbar-nav" class="home-desktop-menu">
+              <nav class="home-links1">
+                <span><a href="https://github.com/">About</a></span>
+                
+              </nav>
+              <div class="home-buttons1">
+                <a href="{% url 'login' %}" class="home-login1 button"> Login </a>        <!-- Login button of the header-->
+                <a href="{% url 'register' %}" class="home-register1 button"> Register </a>  <!-- Register button of the header-->
+              </div>
+            </div>
+          </div>
+          <div data-thq="thq-burger-menu" class="home-burger-menu">
+            <svg viewBox="0 0 1024 1024" class="home-icon14">
+              <path
+                d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
+              ></path>
+            </svg>
+          </div>
+          
+        </header>
+        <hero1-wrapper class="hero1-wrapper">
+          <!--Hero1 component-->
+          <div class="thq-section-padding">
+            <div class="hero1-max-width thq-section-max-width">
+              <div class="thq-flex-row hero1-container1">
+                <div class="hero1-column">
+                  <div class="hero1-content">
+                    <h1>
+                      <fragment class="home-fragment13">
+                        <span class="home-text23 thq-heading-1">
+                          <span>Search, Research, Read, Collaborate</span>
+                          <br />
+                        </span>
+                      </fragment>
+                    </h1>
+                    <p>
+                      <fragment class="home-fragment12">
+                        <span class="home-text22 thq-body-large">
+                          Introducing Citegeist, a collaborative platform for researchers to share and discuss their papers. By enabling open access and cross-disciplinary interaction, Citegeist accelerates the exchange of knowledge, fostering innovation and collaboration across fields, making it easier for academics to connect and contribute globally.
+                        </span>
+                      </fragment>
+                    </p>
+                  </div>
+                  <div class="hero1-actions">
+                    <a href="{% url 'login' %}" class="hero1-button1 thq-button-filled"><!-- login button in the main section-->
+                      <span>
+                        <fragment class="home-fragment10">
+                          <span class="home-text18 thq-body-small">
+                            <span class="home-text19"> Login </span>
+                            <br />
+                          </span>
+                        </fragment>
+                      </span>
+                    </a>
+                    <a href="{% url 'register' %}"class="hero1-button2 thq-button-outline"><!--register button in the main section-->
+                      <span>
+                        <fragment class="home-fragment11">
+                          <span class="home-text21 thq-body-small">
+                            Register
+                          </span>
+                        </fragment>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div class="hero1-container2">
+                  <animate-on-reveal
+                    animation="pulse"
+                    duration="300ms"
+                    delay="0s"
+                    direction="reverse"
+                    easing="ease"
+                    iteration="1"
+                  >
+                    <img
+                      alt="PlaceholderImage1314"
+                      src="https://images.unsplash.com/photo-1618004912476-29818d81ae2e?ixid=M3w5MTMyMXwwfDF8c2VhcmNofDc2fHxhYnN0cmFjdHxlbnwwfHx8fDE3MTA5Mjg2MTV8MA&amp;ixlib=rb-4.0.3&amp;w=1400"
+                      loading="lazy"
+                      data-thq-animate-on-reveal="true"
+                      class="hero1-image1 thq-img-ratio-4-3"
+                    />
+                  </animate-on-reveal>
+                </div>
+              </div>
+            </div>
+          </div>
+        </hero1-wrapper>
+        <footer3-wrapper class="footer3-wrapper">
+          <!--Footer3 component-->
+          <footer class="footer3-footer4 thq-section-padding">
+            <div class="footer3-max-width thq-section-max-width">
+              <div class="footer3-content">
+                <div class="footer3-logo">
+                  <svg width="60" height="60" viewBox="0 0 48 48">
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                    >
+                      <path
+                        d="M18 23.937V10a6 6 0 0 1 12 0v2.006m0 11.997V38a6 6 0 0 1-12 0v-2.03"
+                      ></path>
+                      <path
+                        d="M24 30H9.984C6.68 30 4 27.314 4 24s2.68-6 5.984-6h2.005M24 18h13.989A6.006 6.006 0 0 1 44 24c0 3.314-2.691 6-6.011 6h-1.923"
+                      ></path>
+                    </g>
+                  </svg>
+                  
+                </div>
+                <div class="footer3-links">
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <fragment class="home-fragment14">
+                      <span class="home-text26 thq-body-small">Home</span>
+                    </fragment>
+                  </a>
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <fragment class="home-fragment15">
+                      <span class="home-text27 thq-body-small">About Us</span>
+                    </fragment>
+                  </a>
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <fragment class="home-fragment16">
+                      <span class="home-text28 thq-body-small">Support</span>
+                    </fragment>
+                  </a>
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <fragment class="home-fragment17">
+                      <span class="home-text29 thq-body-small">FAQs</span>
+                    </fragment>
+                  </a>
+                  <a
+                    href="https://example.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <fragment class="home-fragment18">
+                      <span class="home-text30 thq-body-small">Contact Us</span>
+                    </fragment>
+                  </a>
+                </div>
+                <div class="footer3-social-links">
+                  <svg
+                    viewBox="0 0 877.7142857142857 1024"
+                    class="thq-icon-small"
+                  >
+                    <path
+                      d="M713.143 73.143c90.857 0 164.571 73.714 164.571 164.571v548.571c0 90.857-73.714 164.571-164.571 164.571h-107.429v-340h113.714l17.143-132.571h-130.857v-84.571c0-38.286 10.286-64 65.714-64l69.714-0.571v-118.286c-12-1.714-53.714-5.143-101.714-5.143-101.143 0-170.857 61.714-170.857 174.857v97.714h-114.286v132.571h114.286v340h-304c-90.857 0-164.571-73.714-164.571-164.571v-548.571c0-90.857 73.714-164.571 164.571-164.571h548.571z"
+                    ></path></svg
+                  ><svg
+                    viewBox="0 0 877.7142857142857 1024"
+                    class="thq-icon-small"
+                  >
+                    <path
+                      d="M585.143 512c0-80.571-65.714-146.286-146.286-146.286s-146.286 65.714-146.286 146.286 65.714 146.286 146.286 146.286 146.286-65.714 146.286-146.286zM664 512c0 124.571-100.571 225.143-225.143 225.143s-225.143-100.571-225.143-225.143 100.571-225.143 225.143-225.143 225.143 100.571 225.143 225.143zM725.714 277.714c0 29.143-23.429 52.571-52.571 52.571s-52.571-23.429-52.571-52.571 23.429-52.571 52.571-52.571 52.571 23.429 52.571 52.571zM438.857 152c-64 0-201.143-5.143-258.857 17.714-20 8-34.857 17.714-50.286 33.143s-25.143 30.286-33.143 50.286c-22.857 57.714-17.714 194.857-17.714 258.857s-5.143 201.143 17.714 258.857c8 20 17.714 34.857 33.143 50.286s30.286 25.143 50.286 33.143c57.714 22.857 194.857 17.714 258.857 17.714s201.143 5.143 258.857-17.714c20-8 34.857-17.714 50.286-33.143s25.143-30.286 33.143-50.286c22.857-57.714 17.714-194.857 17.714-258.857s5.143-201.143-17.714-258.857c-8-20-17.714-34.857-33.143-50.286s-30.286-25.143-50.286-33.143c-57.714-22.857-194.857-17.714-258.857-17.714zM877.714 512c0 60.571 0.571 120.571-2.857 181.143-3.429 70.286-19.429 132.571-70.857 184s-113.714 67.429-184 70.857c-60.571 3.429-120.571 2.857-181.143 2.857s-120.571 0.571-181.143-2.857c-70.286-3.429-132.571-19.429-184-70.857s-67.429-113.714-70.857-184c-3.429-60.571-2.857-120.571-2.857-181.143s-0.571-120.571 2.857-181.143c3.429-70.286 19.429-132.571 70.857-184s113.714-67.429 184-70.857c60.571-3.429 120.571-2.857 181.143-2.857s120.571-0.571 181.143 2.857c70.286 3.429 132.571 19.429 184 70.857s67.429 113.714 70.857 184c3.429 60.571 2.857 120.571 2.857 181.143z"
+                    ></path></svg
+                  ><svg
+                    viewBox="0 0 950.8571428571428 1024"
+                    class="thq-icon-small"
+                  >
+                    <path
+                      d="M925.714 233.143c-25.143 36.571-56.571 69.143-92.571 95.429 0.571 8 0.571 16 0.571 24 0 244-185.714 525.143-525.143 525.143-104.571 0-201.714-30.286-283.429-82.857 14.857 1.714 29.143 2.286 44.571 2.286 86.286 0 165.714-29.143 229.143-78.857-81.143-1.714-149.143-54.857-172.571-128 11.429 1.714 22.857 2.857 34.857 2.857 16.571 0 33.143-2.286 48.571-6.286-84.571-17.143-148-91.429-148-181.143v-2.286c24.571 13.714 53.143 22.286 83.429 23.429-49.714-33.143-82.286-89.714-82.286-153.714 0-34.286 9.143-65.714 25.143-93.143 90.857 112 227.429 185.143 380.571 193.143-2.857-13.714-4.571-28-4.571-42.286 0-101.714 82.286-184.571 184.571-184.571 53.143 0 101.143 22.286 134.857 58.286 41.714-8 81.714-23.429 117.143-44.571-13.714 42.857-42.857 78.857-81.143 101.714 37.143-4 73.143-14.286 106.286-28.571z"
+                    ></path></svg
+                  ><svg
+                    viewBox="0 0 877.7142857142857 1024"
+                    class="thq-icon-small"
+                  >
+                    <path
+                      d="M135.429 808h132v-396.571h-132v396.571zM276 289.143c-0.571-38.857-28.571-68.571-73.714-68.571s-74.857 29.714-74.857 68.571c0 37.714 28.571 68.571 73.143 68.571h0.571c46.286 0 74.857-30.857 74.857-68.571zM610.286 808h132v-227.429c0-121.714-65.143-178.286-152-178.286-70.857 0-102.286 39.429-119.429 66.857h1.143v-57.714h-132s1.714 37.143 0 396.571v0h132v-221.714c0-11.429 0.571-23.429 4-32 9.714-23.429 31.429-48 68-48 47.429 0 66.286 36 66.286 89.714v212zM877.714 237.714v548.571c0 90.857-73.714 164.571-164.571 164.571h-548.571c-90.857 0-164.571-73.714-164.571-164.571v-548.571c0-90.857 73.714-164.571 164.571-164.571h548.571c90.857 0 164.571 73.714 164.571 164.571z"
+                    ></path></svg
+                  ><svg viewBox="0 0 1024 1024" class="thq-icon-small">
+                    <path
+                      d="M406.286 644.571l276.571-142.857-276.571-144.571v287.429zM512 152c215.429 0 358.286 10.286 358.286 10.286 20 2.286 64 2.286 102.857 43.429 0 0 31.429 30.857 40.571 101.714 10.857 82.857 10.286 165.714 10.286 165.714v77.714s0.571 82.857-10.286 165.714c-9.143 70.286-40.571 101.714-40.571 101.714-38.857 40.571-82.857 40.571-102.857 42.857 0 0-142.857 10.857-358.286 10.857v0c-266.286-2.286-348-10.286-348-10.286-22.857-4-74.286-2.857-113.143-43.429 0 0-31.429-31.429-40.571-101.714-10.857-82.857-10.286-165.714-10.286-165.714v-77.714s-0.571-82.857 10.286-165.714c9.143-70.857 40.571-101.714 40.571-101.714 38.857-41.143 82.857-41.143 102.857-43.429 0 0 142.857-10.286 358.286-10.286v0z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="footer3-credits">
+                <div class="thq-divider-horizontal"></div>
+                <div class="footer3-row">
+                  <div class="footer3-footer-links">
+                    <span class="thq-body-small">© 2024 TeleportHQ</span>
+                    <span>
+                      <fragment class="home-fragment21">
+                        <span class="home-text33 thq-body-small">
+                          Privacy Policy
+                        </span>
+                      </fragment>
+                    </span>
+                    <span>
+                      <fragment class="home-fragment19">
+                        <span class="home-text31 thq-body-small">
+                          Terms and Conditions
+                        </span>
+                      </fragment>
+                    </span>
+                    <span>
+                      <fragment class="home-fragment20">
+                        <span class="home-text32 thq-body-small">
+                          Cookies Policy
+                        </span>
+                      </fragment>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </footer3-wrapper>
+      </div>
+    </div>
+    <script>
+      const modal = document.getElementById("authModal");
+      const closeBtn = document.getElementsByClassName("close")[0];
+      
+      function openModal(tab) {
+          modal.style.display = "block";
+          openTab(event, tab);
+      }
+      
+      closeBtn.onclick = function() {
+          modal.style.display = "none";
+      }
+      
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
+      
+      function openTab(evt, tabName) {
+          var i, tabcontent, tablinks;
+      
+          // Hide all tab content
+          tabcontent = document.getElementsByClassName("tab");
+          for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+          }
+      
+          // Remove active class from all tab buttons
+          tablinks = document.getElementsByClassName("tab-button");
+          for (i = 0; i < tablinks.length; i++) {
+              // Remove specific active classes (for different buttons)
+              tablinks[i].className = tablinks[i].className
+                  .replace(" home-login1 button", "")
+                  .replace("home-register1 button", "")
+                  .replace("hero1-button1 thq-button-filled ", "")
+                  .replace(" hero1-button2 thq-button-outline", "");
+          }
+      
+          // Show the selected tab
+          document.getElementById(tabName).style.display = "block";
+      
+          // Add active class based on tabName
+          if (tabName === "Tab1") {
+              evt.currentTarget.className += "home-login1 button";  // Active styles for Tab1
+          } else if (tabName === "Tab2") {
+              evt.currentTarget.className += " home-register1 button";  // Active styles for Tab2
+          } else if (tabName === "Tab3") {
+              evt.currentTarget.className += " hero1-button1 thq-button-filled";  // Active styles for Tab3
+          } else if (tabName === "Tab4") {
+              evt.currentTarget.className += " hero1-button2 thq-button-outline";  // Active styles for Tab4
+          }
+      }
+      
+          
+      
+  </script>
+  </body>
+</html>
