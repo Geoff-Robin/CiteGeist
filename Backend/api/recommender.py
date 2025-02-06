@@ -3,7 +3,7 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from pathlib import Path
-from .models import Papers,Users
+from .models import Papers
 import yake
 
 class DocumentSearch:
