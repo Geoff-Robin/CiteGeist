@@ -77,7 +77,12 @@ export default function ResearchPaper() {
                 <p className="text-sm text-muted-foreground mb-4">{dataPaper.authors}</p>
 
                 <div className="w-full h-[calc(100vh)] bg-muted rounded-lg overflow-hidden mb-8">
-                  <iframe src={dataPaper.url} className="w-full h-full" title={dataPaper.title} />
+                <iframe
+  src={dataPaper.url.startsWith("http://") ? dataPaper.url.replace("http://", "https://") : dataPaper.url}
+  className="w-full h-full"
+  title={dataPaper.title}
+/>
+
                 </div>
 
                 <div className="mt-8">
