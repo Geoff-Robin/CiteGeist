@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "@/store/auth-context"; // Adjust path as necessary
 
 //const API_URL = "http://127.0.0.1:8000/api/";
-const isDevelopment=import.meta.env.MODE==='development'
+const isDevelopment=import.meta.env.VITE_MODE==='development'
 const API_URL=isDevelopment? import.meta.env.VITE_API_BASE_URL_DEPLOY : import.meta.env.VITE_API_BASE_URL_LOCAL
 export const axiosInstance = axios.create({
   baseURL: API_URL,
