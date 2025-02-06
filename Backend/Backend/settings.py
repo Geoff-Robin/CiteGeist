@@ -126,7 +126,7 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = "postgresql://citegeist_user:Slsj80B0CDvGrx5JuabWp6NgJz7VJbsi@dpg-cucucl1opnds73am6r60-a.singapore-postgres.render.com/citegeist"
 DATABASES={
     "default":dj_database_url.config(default=DATABASE_URL,conn_max_age=1800),
 }
