@@ -7,7 +7,7 @@ class Users(AbstractUser):
     password = models.CharField(max_length=255)
     interests = models.CharField()
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','interests']
+    REQUIRED_FIELDS = ['username']
 
 class Papers(models.Model):
     title=models.CharField()
