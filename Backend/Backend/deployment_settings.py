@@ -1,5 +1,4 @@
 import os 
-import dj_database_url
 from .settings import *
 from .settings import BASE_DIR
 ALLOWED_HOSTS=[os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
@@ -17,11 +16,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-'''
 CORS_ALLOWED_ORIGINS=[
-    'http://localhost:5173'
+    'https://citegeist.onrender.com',
 ]
-'''
 
 STORAGES={
     "default":{
