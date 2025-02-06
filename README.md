@@ -1,12 +1,12 @@
 # CiteGeist
 
 <div align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3GJO08cT7TPyESpj95qMI4aucyjGbt2z8A&s" alt="I am the codegeist" width="200" />
-  <img src="https://miro.medium.com/v2/da:true/resize:fit:499/0*5c0EFFAYszh03b4J.gif" alt="Animated gif" width="200" />
-  <img src="https://i.kym-cdn.com/entries/icons/facebook/000/034/196/cover2.jpg" alt="Meme" width="200" />
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3GJO08cT7TPyESpj95qMI4aucyjGbt2z8A&s" alt="I am the codegeist" width="200" height="200" />
+  <img src="https://miro.medium.com/v2/da:true/resize:fit:499/0*5c0EFFAYszh03b4J.gif" alt="Animated gif" width="200" height="200" />
+  <img src="https://i.kym-cdn.com/entries/icons/facebook/000/034/196/cover2.jpg" alt="Meme" width="200" height="200" />
 </div>
 
-**"I am the codegeist" - A friend (Definitely Not Me)**
+<h4 align="center">"I am the codegeist" - A friend (Definitely Not Me)</h4>
 
 ## [+] Description
 CiteGeist is a research paper recommendation system that uses content-based filtering via cosine similarity between vectors created with TF-IDF. We deploy this system on a backend which is accessible through the website CodeGeist.
