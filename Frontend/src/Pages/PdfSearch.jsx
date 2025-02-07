@@ -42,11 +42,12 @@ export default function PdfSearch() {
     }
   }
 
-  const totalPages = Math.ceil(sampleResults.length / itemsPerPage);
-  const currentResults = sampleResults.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const totalPages = results.length > 0 ? Math.ceil(results.length / itemsPerPage) : 1;
+  const validPage = Math.max(1, Math.min(currentPage, totalPages));
+  const startIndex = (validPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, results.length);
+  const currentResults = results.slice(startIndex, endIndex);
+
 
   return (
     <SidebarProvider>
