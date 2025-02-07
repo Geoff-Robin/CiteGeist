@@ -2,6 +2,7 @@ import { BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import { AppSidebar } from "@/components/CustomSidebar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
@@ -15,18 +16,26 @@ import { useAxiosPrivate } from "@/axios";
 export default function Search() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const itemsPerPage = 5;
   const axiosPrivateInstance = useAxiosPrivate();
   const [query, setQuery] = useState("");
   const [sampleResults, setSampleResults] = useState([]);
 
   async function onSubmit() {
+    setIsLoading(true);
+    setProgress(30);
     try {
       const response = await axiosPrivateInstance.post("search", { query });
+      setProgress(90);
       setSampleResults(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error("Search failed:", error);
       setSampleResults([]);
+    } finally {
+      setProgress(100);
+      setTimeout(() => setIsLoading(false), 400);
     }
   }
 
@@ -117,22 +126,40 @@ export default function Search() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {currentResults.map((result) => (
-                  <Card key={result.id} className="flex flex-row p-4 border-2">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-lg font-medium">{result.title}</h3>
-                        <p className="text-sm text-muted-foreground font-normal">Abstract</p>
-                        <p className="mt-2">{result.abstract}</p>
+              {isLoading ? (
+                <div className="space-y-6">
+                  <Progress value={progress} className="w-full" />
+                  {[...Array(3)].map((_, i) => (
+                    <Card key={i} className="flex flex-row p-4 border-2 animate-pulse">
+                      <div className="w-full space-y-4">
+                        <div className="h-4 bg-muted rounded w-3/4"></div>
+                        <div className="h-2 bg-muted rounded w-1/4"></div>
+                        <div className="space-y-2">
+                          <div className="h-2 bg-muted rounded"></div>
+                          <div className="h-2 bg-muted rounded w-5/6"></div>
+                        </div>
                       </div>
-                      <Link to={`/paper/${result.id}`}>
-                        <Button variant="outline" size="sm">View</Button>
-                      </Link>
-                    </div>
-                  </Card>
-                ))}
-              </div>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {currentResults.map((result) => (
+                    <Card key={result.id} className="flex flex-row p-4 border-2">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="text-lg font-medium">{result.title}</h3>
+                          <p className="text-sm text-muted-foreground font-normal">Abstract</p>
+                          <p className="mt-2">{result.abstract}</p>
+                        </div>
+                        <Link to={`/paper/${result.id}`}>
+                          <Button variant="outline" size="sm">View</Button>
+                        </Link>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
         </main>
