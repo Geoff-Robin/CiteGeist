@@ -39,7 +39,7 @@ export default function Search() {
     }
   }
 
-  const totalPages = results.length > 0 ? Math.ceil(results.length / itemsPerPage) : 1;
+  const totalPages = sampleResults.length > 0 ? Math.ceil(results.length / itemsPerPage) : 1;
   const validPage = Math.max(1, Math.min(currentPage, totalPages));
   const startIndex = (validPage - 1) * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, results.length);
