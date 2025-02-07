@@ -11,7 +11,7 @@
 ## [+] Description
 CiteGeist is a research paper recommendation system that uses content-based filtering via cosine similarity between vectors created with TF-IDF. We deploy this system on a backend which is accessible through the website CodeGeist.
 
-[Visit CiteGeist](https://citegeist.onrender.com/)
+[Visit CiteGeist](https://citegeist.onrender.com/) might face requests due render's free tier policy that causes the backend to spin down during low activity
 
 ## [+] Installation
 1. `cd Backend; pip install -r requirements.txt`
