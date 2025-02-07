@@ -10,7 +10,7 @@ import { axiosInstance } from "@/axios"
 
 export function SignInForm({ className, ...props }) {
   const navigate = useNavigate()
-  const [alert, showAlert] = useState(false)
+  const [showAlertError, setShowAlertError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -30,14 +30,16 @@ export function SignInForm({ className, ...props }) {
       })
       setAccessToken(response?.data?.access)
       setRefreshToken(response?.data?.refresh)
-      showAlert(false)
+      setShowAlertError(false)
+      navigate('/home')
+      // Reset fields after successful navigation
+      setUsername("")
+      setEmail("")
       setPass("")
       setInt("")
-      setEmail("")
-      setUsername("")
-      navigate('/home')
     } catch (error) {
-      showAlert(true)
+      console.error("Registration Error:", error)
+      setShowAlertError(true)
     } finally {
       setIsLoading(false)
     }
@@ -51,11 +53,13 @@ export function SignInForm({ className, ...props }) {
           Enter your details below to sign up
         </p>
       </div>
-      {alert && (
+
+      {showAlertError && (
         <div className="mt-4 px-4 py-2 text-sm text-white bg-red-500 rounded">
-          Something went wrong
+          Something went wrong. Please try again.
         </div>
       )}
+
       <div className="grid gap-6">
         <div className="grid gap-2">
           <Label htmlFor="username">Username</Label>
@@ -99,6 +103,7 @@ export function SignInForm({ className, ...props }) {
             required
           />
         </div>
+
         <Button type="submit" disabled={isLoading} className="w-full">
           {isLoading ? (
             <>
@@ -110,6 +115,7 @@ export function SignInForm({ className, ...props }) {
           )}
         </Button>
       </div>
+
       <div className="text-center text-sm">
         Already have an account?{" "}
         <a href="/login" className="underline underline-offset-4">
