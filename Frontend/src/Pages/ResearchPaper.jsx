@@ -25,9 +25,7 @@ export default function ResearchPaper() {
       setIsLoading(true)
       setProgress(13)
       try {
-        const responsePaper = await axiosPrivateInstance.post("paper", {
-          id: id,
-        })
+        const responsePaper = await axiosPrivateInstance.post("paper", { id })
         setDataPaper(responsePaper?.data)
         setProgress(65)
 
@@ -43,7 +41,7 @@ export default function ResearchPaper() {
       } finally {
         setTimeout(() => {
           setIsLoading(false)
-        }, 400) // Small delay to ensure progress animation completes
+        }, 400)
       }
     }
     getPaper()
@@ -53,7 +51,7 @@ export default function ResearchPaper() {
     return (
       <SidebarProvider>
         <div className="flex">
-          <AppSidebar/>
+          <AppSidebar className="hidden md:block" />
         </div>
       </SidebarProvider>
     )
@@ -62,31 +60,32 @@ export default function ResearchPaper() {
   return (
     <SidebarProvider>
       <div className="flex">
-        <AppSidebar/>
+        <AppSidebar className="hidden md:block" />
         <SidebarInset>
-          <div className="flex-1 flex flex-col min-h-screen max-w-[calc(100vw-16rem)] overflow-x-hidden">
-            <header className="ml-3 flex h-16 mb-2 border-spacing-1 text-foreground shrink-0 items-center transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between backdrop-filter bg-opacity-5 sticky top-0 z-50 backdrop-blur-md">
+          <div className="flex-1 flex flex-col min-h-screen max-w-full overflow-x-hidden">
+            {/* Header */}
+            <header className="ml-3 flex h-12 md:h-16 mb-2 text-foreground shrink-0 items-center transition-[width,height] ease-linear justify-between backdrop-filter bg-opacity-5 sticky top-0 z-50 backdrop-blur-md">
               <div className="flex items-center gap-2">
                 <SidebarTrigger />
                 <Separator orientation="vertical" className="h-4" />
                 <Breadcrumb>
                   <BreadcrumbList>
                     <BreadcrumbItem>
-                      <Link to="/home" className="flex flex-row">
-                        Home
-                      </Link>
+                      <Link to="/home" className="flex flex-row">Home</Link>
                     </BreadcrumbItem>
                   </BreadcrumbList>
                 </Breadcrumb>
               </div>
             </header>
 
-            <main className="flex-1 px-4 pb-8 overflow-y-auto h-screen">
+            {/* Main Content */}
+            <main className="flex-1 px-4 pb-8 overflow-y-auto min-h-screen max-w-full">
               <div className="max-w-6xl mx-auto">
                 <h1 className="text-2xl font-bold mb-4">{dataPaper.title}</h1>
                 <p className="text-sm text-muted-foreground mb-4">{dataPaper.authors}</p>
 
-                <div className="w-full h-[calc(100vh)] bg-muted rounded-lg overflow-hidden mb-8">
+                {/* Paper Display */}
+                <div className="w-full h-[75vh] bg-muted rounded-lg overflow-hidden mb-8">
                   <iframe
                     src={dataPaper.url.startsWith("http://") ? dataPaper.url.replace("http://", "https://") : dataPaper.url}
                     className="w-full h-full"
@@ -94,6 +93,7 @@ export default function ResearchPaper() {
                   />
                 </div>
 
+                {/* Recommended Papers */}
                 <div className="mt-8">
                   <h2 className="text-xl font-semibold mb-4">Recommended Papers</h2>
                   {isLoading ? (
@@ -103,9 +103,9 @@ export default function ResearchPaper() {
                     </div>
                   ) : (
                     <ScrollArea className="h-72 w-full rounded-md border">
-                      <div className="flex flex-wrap p-4 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
                         {dataRecommendations.map((rec, index) => (
-                          <Card key={index} className="bg-muted/50 w-[calc(33.33%-1rem)]">
+                          <Card key={index} className="bg-muted/50">
                             <CardHeader className="p-4">
                               <CardTitle className="flex justify-between items-start text-base">
                                 <Link
