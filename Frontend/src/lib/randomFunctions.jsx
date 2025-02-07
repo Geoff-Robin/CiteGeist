@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function useRequireAuth(redirectPath = '/test') {
+export function useRequireAuth(redirectPath = '/') {
   const navigate = useNavigate();
 
   useEffect(() => {
