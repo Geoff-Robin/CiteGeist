@@ -48,51 +48,44 @@ export default function PdfSearch() {
   const endIndex = Math.min(startIndex + itemsPerPage, sampleResults.length);
   const currentResults = sampleResults.slice(startIndex, endIndex);
 
-
   return (
     <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="ml-3 flex h-16 mb-2 border-spacing-1 text-foreground shrink-0 items-center transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 justify-between backdrop-filter bg-opacity-5 sticky top-0 z-50 backdrop-blur-md">
-          <div className="flex items-center gap-2">
-            <SidebarTrigger />
-            <Separator orientation="vertical" className="h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <Link to="/home" className="flex flex-row">
-                    Home
-                  </Link>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <Link to="/PdfSearch" className="flex flex-row">
-                    Search
-                  </Link>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        </header>
+      <div className="flex">
+        <AppSidebar className="hidden md:block" />
+        <SidebarInset className="flex-1 w-full">
+          <header className="ml-3 flex h-16 mb-2 text-foreground items-center justify-between backdrop-filter bg-opacity-5 sticky top-0 z-50 backdrop-blur-md">
+            <div className="flex items-center gap-2">
+              <SidebarTrigger />
+              <Separator orientation="vertical" className="h-4" />
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <Link to="/home" className="flex flex-row">Home</Link>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <Link to="/PdfSearch" className="flex flex-row">Search</Link>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          </header>
 
-        <main className="flex-1 px-4 pb-8">
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>PDF Search</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col gap-4">
-                <div className="flex gap-4">
-                  <div className="flex-1">
-                    <Input
-                      type="file"
-                      accept="application/pdf"
-                      onChange={(e) => setQuery(e.target.files[0])}
-                      className="w-full border-2"
-                    />
-                  </div>
+          <main className="flex-1 px-4 pb-8 w-full">
+            <Card className="mb-6">
+              <CardHeader>
+                <CardTitle>PDF Search</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col gap-4 sm:flex-row">
+                  <Input
+                    type="file"
+                    accept="application/pdf"
+                    onChange={(e) => setQuery(e.target.files[0])}
+                    className="flex-1 border-2 w-full"
+                  />
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                    <SelectTrigger className="w-48 border-2">
+                    <SelectTrigger className="w-full sm:w-48 border-2">
                       <SelectValue placeholder="Category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -100,62 +93,58 @@ export default function PdfSearch() {
                       <SelectItem value="documents">AI</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Button className="w-32" onClick={onSubmit}>
+                  <Button className="w-full sm:w-32" onClick={onSubmit}>
                     Search
                   </Button>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle>Search Results</CardTitle>
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <span className="text-sm">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={currentPage === totalPages}
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {currentResults.map((result) => (
-                  <Card key={result.id} className="p-4 border-2">
-                    <div className="flex items-center justify-between">
-                      <div>
+            <Card>
+              <CardHeader className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <CardTitle>Search Results</CardTitle>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  <span className="text-sm">
+                    Page {currentPage} of {totalPages}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {currentResults.map((result) => (
+                    <Card key={result.id} className="p-4 border-2">
+                      <div className="flex flex-col">
                         <h3 className="text-lg font-medium">{result.title}</h3>
                         <p className="text-sm text-muted-foreground font-normal">Abstract</p>
                         <p className="mt-2">{result.abstract}</p>
+                        <Link to={`/paper/${result.id}`} className="mt-2 self-start">
+                          <Button variant="outline" size="sm">View</Button>
+                        </Link>
                       </div>
-                      <Link to={`/paper/${result.id}`}>
-                        <Button variant="outline" size="sm">
-                          View
-                        </Button>
-                      </Link>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </main>
-      </SidebarInset>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </main>
+        </SidebarInset>
+      </div>
     </SidebarProvider>
   );
 }
