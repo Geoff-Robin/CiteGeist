@@ -64,7 +64,7 @@ export default function PdfSearch() {
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <Link to="/PdfSearch" className="flex flex-row">Search</Link>
+                    <Link to="/PdfSearch" className="flex flex-row">Pdf Search</Link>
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
