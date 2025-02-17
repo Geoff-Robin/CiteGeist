@@ -5,9 +5,7 @@ const Papers = require('./models/paper.model'); // using your provided Papers mo
 
 // Helper: simple tokenization (splitting on non-word characters)
 function tokenize(text) {
-  return String(text)
-    .toLowerCase()
-    .match(/\b\w+\b/g) || [];
+  return text.toLowerCase().match(/\b\w+\b/g) || [];
 }
 
 // Helper: cosine similarity between two arrays
@@ -48,78 +46,86 @@ class DocumentSearch {
   }
 
   async computeAndSaveVectors() {
-    // Fetch all papers from the database
-    const papers = await Papers.find({}, { id: 1, title: 1, abstract: 1, authors: 1 });
-    if (!papers || papers.length === 0) {
-      throw new Error("No papers found in database");
-    }
-
-    const combinedDocs = [];
-    const paperIds = [];
-
-    // Build combined text for each paper (using title, abstract, and authors)
-    papers.forEach(paper => {
-      const combinedText = `${paper.title} ${paper.abstract} ${paper.authors || ''}`;
-      combinedDocs.push(combinedText);
-      // Convert paper.id to string for consistency
-      paperIds.push(String(paper.id));
-    });
-
-    // Build vocabulary from all documents
-    const docTokens = combinedDocs.map(doc => tokenize(doc));
-    const vocabSet = new Set();
-    docTokens.forEach(tokens => {
-      tokens.forEach(token => vocabSet.add(token));
-    });
-    this.vocabulary = {};
-    let idx = 0;
-    for (let term of vocabSet) {
-      this.vocabulary[term] = idx++;
-    }
-    const vocabSize = Object.keys(this.vocabulary).length;
-
-    // Document frequencies
-    const df = Array(vocabSize).fill(0);
-    docTokens.forEach(tokens => {
-      const seen = new Set(tokens);
-      seen.forEach(token => {
-        const index = this.vocabulary[token];
-        df[index] += 1;
-      });
-    });
-    const numDocs = combinedDocs.length;
-    this.idf = df.map(freq => Math.log(numDocs / (freq || 1)));
-
-    // Compute TF-IDF vectors for each document (dense representation)
-    this.docVectors = docTokens.map(tokens => {
-      const vec = Array(vocabSize).fill(0);
-      tokens.forEach(token => {
-        const index = this.vocabulary[token];
-        vec[index] += 1;
-      });
-      // Multiply term frequency by IDF weight
-      for (let i = 0; i < vec.length; i++) {
-        vec[i] *= this.idf[i];
+    try {
+      // Fetch all papers from the database
+      const papers = await Papers.find({}, { id: 1, title: 1, abstract: 1, authors: 1 });
+      if (!papers || papers.length === 0) {
+        throw new Error("No papers found in database");
       }
-      return vec;
-    });
 
-    this.paperIds = paperIds;
+      const combinedDocsPromises = papers.map(async (paper) => {
+        if (!paper.title || !paper.abstract) {
+          console.warn(`Skipping paper with missing title or abstract: ${paper.id}`);
+          return null; // Skip this paper
+        }
+        const combinedText = `${paper.title} ${paper.abstract} ${paper.authors || ''}`;
+        return combinedText;
+      });
 
-    // Save computed data to file
-    const savedData = {
-      vocabulary: this.vocabulary,
-      idf: this.idf,
-      docVectors: this.docVectors,
-      paperIds: this.paperIds
-    };
-    fs.writeFileSync(this.vectorsPath, JSON.stringify(savedData));
+      const combinedDocs = (await Promise.all(combinedDocsPromises)).filter(doc => doc !== null);
+      const paperIds = papers.map(paper => String(paper.id));
+
+      // Build vocabulary from all documents
+      const docTokens = combinedDocs.map(doc => tokenize(doc));
+      const vocabSet = new Set();
+      docTokens.forEach(tokens => {
+        tokens.forEach(token => vocabSet.add(token));
+      });
+      this.vocabulary = {};
+      let idx = 0;
+      for (let term of vocabSet) {
+        this.vocabulary[term] = idx++;
+      }
+      const vocabSize = Object.keys(this.vocabulary).length;
+
+      // Document frequencies
+      const df = Array(vocabSize).fill(0);
+      docTokens.forEach(tokens => {
+        const seen = new Set(tokens);
+        seen.forEach(token => {
+          const index = this.vocabulary[token];
+          df[index] += 1;
+        });
+      });
+      const numDocs = combinedDocs.length;
+      this.idf = df.map(freq => Math.log((numDocs + 1) / (freq + 1)) + 1);
+
+      // Compute TF-IDF vectors for each document (dense representation)
+      this.docVectors = docTokens.map(tokens => {
+        const vec = new Map();
+        tokens.forEach(token => {
+          const index = this.vocabulary[token];
+          vec.set(index, (vec.get(index) || 0) + 1);
+        });
+        // Multiply by idf
+        this.idf.forEach((idfValue, i) => {
+          if (vec.has(i)) {
+            vec.set(i, vec.get(i) * idfValue);
+          }
+        });
+        return vec;
+      });
+
+      this.paperIds = paperIds;
+
+      // Save computed data to file
+      const savedData = {
+        vocabulary: this.vocabulary,
+        idf: this.idf,
+        docVectors: this.docVectors,
+        paperIds: this.paperIds
+      };
+      fs.writeFileSync(this.vectorsPath, JSON.stringify(savedData));
+    } catch (error) {
+      console.error("Error during vector computation:", error);
+      throw error;
+    }
   }
 
   // Compute a query vector using the saved vocabulary and idf
   computeQueryVector(query) {
     const tokens = tokenize(query);
-    const vec = Array(Object.keys(this.vocabulary).length).fill(0);
+    const vec = new Array(Object.keys(this.vocabulary).length).fill(0);
     tokens.forEach(token => {
       if (this.vocabulary.hasOwnProperty(token)) {
         vec[this.vocabulary[token]] += 1;
@@ -167,7 +173,13 @@ class DocumentSearch {
     let selectedPaperIds = highSimIndices.map(item => this.paperIds[item.index]);
 
     // If an author filter is provided, fetch papers matching that filter.
-    // (This filtering is done later in the Express endpoint.)
+    if (author) {
+      selectedPaperIds = selectedPaperIds.filter((id) => {
+        const paper = this.paperIds.find(paper => paper.id === id);
+        return paper && paper.authors && paper.authors.toLowerCase().includes(author.toLowerCase());
+      });
+    }
+
     return selectedPaperIds;
   }
 
