@@ -5,6 +5,7 @@ const app = express();
 const user_routes = require("./routes/user.routes");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const paper_routes = require("./routes/paper.routes")
 dotenv.config();
 const corsOptions = {
   origin: "http://localhost:8000",
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 app.use("/api", user_routes);
-
+app.use("/api",paper_routes)
 let refresh_tokens = [];
 
 app.post("/api/token/refresh/", (req, res) => {

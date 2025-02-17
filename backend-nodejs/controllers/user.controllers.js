@@ -17,8 +17,8 @@ const register = async (req, res) => {
     await user.save();
     user = await Users.findOne({ email });
     res.status(200).json({
-      access : getAccessToken(),
-      refresh : getRefreshToken(),
+      access: getAccessToken(),
+      refresh: getRefreshToken(),
     });
   } catch (error) {
     console.log("error :", error);
@@ -64,9 +64,13 @@ const login = async (req, res) => {
 };
 
 const getAccessToken = (user) => {
-  const access = jwt.sign({ user_id: user.id }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "15s",
-  });
+  const access = jwt.sign(
+    { user_id: user.id },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "15s",
+    }
+  );
   return access;
 };
 const getRefreshToken = (user) => {
@@ -77,4 +81,7 @@ const getRefreshToken = (user) => {
   return refresh;
 };
 
-module.exports = [login, register];
+module.exports = {
+  login,
+  register,
+};
