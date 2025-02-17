@@ -4,8 +4,12 @@ const morgan = require("morgan");
 const app = express();
 const user_routes = require("./routes/user.routes");
 const dotenv = require("dotenv");
-
+const cors = require("cors");
 dotenv.config();
+const corsOptions = {
+  origin: "http://localhost:8000",
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("tiny"));
 
@@ -42,7 +46,9 @@ async function run() {
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
-    app.listen(8000);
+    app.listen(8000, () => {
+      console.log(`Server running on port 8000`);
+    });
   } finally {
     await mongoose.disconnect();
   }
