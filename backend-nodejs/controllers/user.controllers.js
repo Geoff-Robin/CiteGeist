@@ -7,7 +7,8 @@ dotenv.config();
 const register = async (req, res) => {
   try {
     const { username, email, password, interests } = req.body;
-    const encrypted_password = bcrypt(password);
+    const encrypted_password = bcrypt.hashSync(password, 10);
+
     let user = new Users({
       username,
       email,
@@ -65,17 +66,17 @@ const login = async (req, res) => {
 
 const getAccessToken = (user) => {
   const access = jwt.sign(
-    { user_id: user.id },
+    { user_id: user._id },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "15s",
+      expiresIn: "20m",
     }
   );
   return access;
 };
 const getRefreshToken = (user) => {
   const refresh = jwt.sign(
-    { user_id: user.id },
+    { user_id: user._id },
     process.env.REFRESH_TOKEN_SECRET
   );
   return refresh;

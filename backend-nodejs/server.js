@@ -50,8 +50,9 @@ async function run() {
     app.listen(8000, () => {
       console.log(`Server running on port 8000`);
     });
-  } finally {
-    await mongoose.disconnect();
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
   }
 }
 run().catch(console.dir);
+
