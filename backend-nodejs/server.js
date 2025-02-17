@@ -29,7 +29,7 @@ app.delete("/api/logout", (req, res) => {
   res.sendStatus(200);
 });
 
-const uri = `mongodb+srv://sonheungmin:${process.env.MONGODB_PASSWORD}@cluster0.ajcew.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.ajcew.mongodb.net/CiteGeist?retryWrites=true&w=majority&appName=Cluster0`;
 
 const clientOptions = {
   serverApi: { version: "1", strict: true, deprecationErrors: true },
