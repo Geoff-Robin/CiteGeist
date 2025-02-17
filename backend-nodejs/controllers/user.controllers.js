@@ -16,20 +16,9 @@ const register = async (req, res) => {
     });
     await user.save();
     user = await Users.findOne({ email });
-    const access = jwt.sign(
-      { user_id: user._id },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "15s",
-      }
-    );
-    const refresh = jwt.sign(
-      { user_id: user._id },
-      process.env.REFRESH_TOKEN_SECRET
-    );
     res.status(200).json({
-      access,
-      refresh,
+      access : getAccessToken(),
+      refresh : getRefreshToken(),
     });
   } catch (error) {
     console.log("error :", error);
@@ -63,8 +52,8 @@ const login = async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
     if (match) {
       return res.status(200).json({
-        refresh: getRefreshToken(),
-        access: getAccessToken(),
+        refresh: getRefreshToken(user),
+        access: getAccessToken(user),
       });
     } else {
       return res.status(400).json({
@@ -74,11 +63,18 @@ const login = async (req, res) => {
   }
 };
 
-const getRefreshToken = () => {
+const getAccessToken = (user) => {
+  const access = jwt.sign({ user_id: user.id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "15s",
+  });
+  return access;
+};
+const getRefreshToken = (user) => {
   const refresh = jwt.sign(
-    { user_id: user._id },
+    { user_id: user.id },
     process.env.REFRESH_TOKEN_SECRET
   );
+  return refresh;
 };
 
 module.exports = [login, register];
