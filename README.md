@@ -20,7 +20,7 @@ CiteGeist is a research paper recommendation system that uses content-based filt
 4. `npm run dev`
 
 ## [+] Features
-- **Content-Based Filtering**: Think of it as the Sherlock Holmes of articles—minus the deerstalker hat. It finds the best content by analyzing what’s written, no detective work required. 🔍
-- **Article Ranking**: It sorts articles like a lazy librarian who only cares about putting the “good” ones on display. The top picks get the VIP treatment, while the rest… well, they get a polite nod.
-- **Text Analysis**: This feature scans through the text with the enthusiasm of someone who’s had too much coffee and nothing else to do. It picks up keywords and context without breaking a sweat.
-- **No User Tracking**: Rest easy knowing that your reading habits remain as mysterious as my motivation. CiteGeist focuses on the content, not on spying on you.
+- **Content-Based Filtering**: This method recommends articles by analyzing their content rather than tracking user behavior. It finds relevant articles based on what’s written, ensuring quality recommendations.  
+- **Article Ranking**: Articles are ranked based on relevance and quality, with the best ones highlighted. Less relevant articles are still considered but given lower priority.  
+- **Text Analysis**: The system scans articles for keywords and context to understand their main topics, ensuring accurate recommendations.  
+- **No User Tracking**: CiteGeist focuses entirely on the content itself, not on tracking your reading habits or personal data.
