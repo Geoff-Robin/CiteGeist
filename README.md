@@ -6,7 +6,7 @@
   <img src="https://i.kym-cdn.com/entries/icons/facebook/000/034/196/cover2.jpg" alt="Meme" width="200" height="200" />
 </div>
 
-<h4 align="center">"I am the codegeist" - A friend (Definitely Not Me)</h4>
+<h4 align="center">"I am the citegeist" - A friend (Definitely Not Me)</h4>
 
 ## [+] Description
 CiteGeist is a research paper recommendation system that uses content-based filtering via cosine similarity between vectors created with TF-IDF. We deploy this system on a backend which is accessible through the website CodeGeist.
