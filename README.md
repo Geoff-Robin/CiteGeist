@@ -9,7 +9,7 @@
 <h4 align="center">"I am the citegeist" - A friend (Definitely Not Me)</h4>
 
 ## [+] Description
-CiteGeist is a research paper recommendation system that uses content-based filtering via cosine similarity between vectors created with TF-IDF. We deploy this system on a backend which is accessible through the website CodeGeist.
+CiteGeist is a research paper recommendation system that uses content-based filtering via cosine similarity between vectors created with TF-IDF and saved in MongoDB. We deploy this system on a backend which is accessible through the website CodeGeist.
 
 [Visit CiteGeist](https://citegeist.onrender.com/) (might face request delay due Render's free tier policy that causes the backend to spin down during low activity).
 
