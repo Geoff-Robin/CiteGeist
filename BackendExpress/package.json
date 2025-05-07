@@ -10,9 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
+    "express-session": "^1.18.1",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   }
 }
