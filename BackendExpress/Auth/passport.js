@@ -1,5 +1,5 @@
 const passport = require('passport');
-const {createUserByGoogleOAuth,getUserById} = require('../Users/controller')
+const {createUserByGoogleOAuth,getUserByGoogleId} = require('../Users/controller')
 const GoogleStrategy = require('passport-google-oauth20');
 require('dotenv').config()
 
@@ -9,7 +9,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/auth/google/callback"
 }, async(accessToken, refreshToken, profile, done) => {
-    let user = await getUserById(profile.id);
+    let user = await getUserByGoogleId(profile.id);
     if(!user){
         user = await createUserByGoogleOAuth(profile);
     }
